@@ -11,16 +11,19 @@
   <ItemGroup>
     <None Remove="HOMEMATE-removebg-preview.png" />
     <None Remove="png_7qsoij.png" />
+    <None Remove="Untitled_design__3_-removebg-preview.png" />
     <None Remove="_Simplify..png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="HOMEMATE-removebg-preview.png" />
     <Resource Include="png_7qsoij.png" />
+    <Resource Include="Untitled_design__3_-removebg-preview.png" />
     <Resource Include="_Simplify..png" />
   </ItemGroup>
 

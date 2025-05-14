@@ -15,13 +15,20 @@ using System.Windows.Shapes;
 namespace HouseInventory
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for RegistrationWindow.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class RegistrationWindow : Window
     {
-        public Window1()
+        public RegistrationWindow()
         {
             InitializeComponent();
+        }
+
+
+        private void Register_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            
+            this.Close();       
         }
     }
 }

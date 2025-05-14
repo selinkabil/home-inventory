@@ -8,13 +8,13 @@ C:\Users\Lenovo RYZEN 7\source\repos\HouseInventory\repo\HouseInventory\obj\Debu
 HouseInventory
 none
 false
-TRACE;DEBUG;NET;NET8_0;NETCOREAPP
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\Lenovo RYZEN 7\source\repos\HouseInventory\repo\HouseInventory\App.xaml
-21940794329
+41772116504
 
-7-1411196535
-203-1662968979
-MainWindow.xaml;Window1.xaml;
+9324756619
+2081737717615
+AddItem.xaml;LoginWindow.xaml;MainWindow.xaml;RegistrationWindow.xaml;
 
 False
 
