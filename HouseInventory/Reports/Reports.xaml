@@ -1,0 +1,209 @@
+﻿<Window x:Class="HouseInventory.Reports.Reports"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HouseInventory"
+        mc:Ignorable="d"
+        Title="Categories" WindowState="Maximized" Background="#FAFAF9">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="287"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar Menu - reuse the same sidebar -->
+        <StackPanel Background="#E9E9E7" HorizontalAlignment="Center" Width="285">
+            <Image Height="110" Margin="0,20,0,30" Width="216" Source="/Dashboard/Untitled_design__3_-removebg-preview.png"/>
+
+            <Button Content="Dashboard" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Cursor="Hand" Click="DashboardButton_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#8CA07B"/>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="Categories" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Cursor="Hand" Click="CategoriesButton_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#8CA07B"/>
+                    <!-- Highlight categories button with slightly different green -->
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <!-- Other sidebar buttons -->
+            <Button Content="Buildings" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Cursor="Hand" Click="BuildingsButton_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#8CA07B"/>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="Rooms" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Cursor="Hand" Click="RoomsButton_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#8CA07B"/>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="Reports" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Cursor="Hand" Click="ReportsButton_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#6B7E54"/>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="Exit" Cursor="Hand" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Click="Button_Click_Exit">
+                <Button.Background>
+                    <SolidColorBrush Color="#8CA07B"/>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+
+        <!-- Main content area -->
+        <Grid Grid.Column="1" Margin="10,50,20,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Report Buttons Panel (row 0) -->
+            <Grid Grid.Row="0" Margin="10,10,23,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+
+                    <ColumnDefinition Width="Auto"/>
+                    
+                </Grid.ColumnDefinitions>
+
+                <!-- Inventory Summary and breakdown buttons -->
+             
+
+                <!-- Value Reports buttons -->
+                
+               
+            </Grid>
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Buttons panel -->
+                    <RowDefinition Height="*"/>
+                    <!-- TabControl for reports -->
+                </Grid.RowDefinitions>
+
+                <!-- Buttons Panel -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="1" Grid.Row="0" BorderBrush="#8CA07B" BorderThickness="2" CornerRadius="15" Margin="10" Padding="20" Background="White" MinHeight="220">
+                        <StackPanel>
+                            <TextBlock Text="Value Reports" FontSize="22" FontWeight="Bold" Foreground="#4A6A33" Margin="0,0,0,15"/>
+
+                            <Button Content="Total Value" Cursor="Hand" Click="ValueReport_Click"  Margin="0,0,0,8"/>
+                            <TextBlock Text="Calculate total monetary value of your inventory." FontSize="12" Foreground="#666" Margin="0,0,0,12"/>
+
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="0" BorderBrush="#8CA07B" BorderThickness="2" CornerRadius="15" Margin="10" Padding="20" Background="White" MinHeight="220">
+                        <StackPanel>
+                            <TextBlock Text="Inventory Summary" FontSize="22" FontWeight="Bold" Foreground="#4A6A33" Margin="0,0,0,15"/>
+
+                            <Button Content="View Summary" Cursor="Hand" Click="InventorySummary_Click" Margin="0,0,0,8"/>
+                            <TextBlock Text="Overview of all items currently in your inventory." FontSize="12" Foreground="#666" Margin="0,0,0,12"/>
+
+                            <Button Content="By Category" Cursor="Hand" Click="CategoryBreakdown_Click" Margin="0,0,0,8"/>
+                            <TextBlock Text="Detailed breakdown of items grouped by categories." FontSize="12" Foreground="#666" Margin="0,0,0,12"/>
+
+                            <Button Content="By Room" Cursor="Hand" Click="RoomsUsage_Click"/>
+                            <TextBlock Text="Shows where items are located by room." FontSize="12" Foreground="#666"/>
+                        </StackPanel>
+                    </Border>
+
+
+                </Grid>
+
+                <TabControl Grid.Row="1" Margin="10">
+                    <TabItem Header="Inventory Summary">
+                        <StackPanel>
+                            <Button Content="Export to Excel" Click="ExportInventorySummary_Click" Margin="0,0,0,5"/>
+                            <DataGrid x:Name="InventorySummaryGrid" AutoGenerateColumns="True" />
+                        </StackPanel>
+                    </TabItem>
+
+                    <TabItem Header="Category Breakdown">
+                        <StackPanel>
+                            <Button Content="Export to Excel" Click="ExportCategoryBreakdown_Click" Margin="0,0,0,5"/>
+                            <DataGrid x:Name="CategoryBreakdownGrid" AutoGenerateColumns="True" />
+                        </StackPanel>
+                    </TabItem>
+
+                    <TabItem Header="Room Usage">
+                        <StackPanel>
+                            <Button Content="Export to Excel" Click="ExportRoomUsage_Click" Margin="0,0,0,5"/>
+                            <DataGrid x:Name="RoomUsageGrid" AutoGenerateColumns="True" />
+                        </StackPanel>
+                    </TabItem>
+
+                    <TabItem Header="Total Value">
+                        <StackPanel>
+                            <Button Content="Export to Excel" Click="ExportTotalValue_Click" Margin="0,0,0,5"/>
+                            <TextBlock x:Name="TotalValueText" FontSize="16" Padding="10" />
+                        </StackPanel>
+                    </TabItem>
+
+                    
+                </TabControl>
+
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>

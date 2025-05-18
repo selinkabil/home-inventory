@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\Lenovo RYZEN 7\source\repos\HouseInventory\repo\HouseInventory\App.xaml
-41772116504
+17-2002508419
 
-7-711365478
-203969715285
-AddItem.xaml;LoginWindow.xaml;MainWindow.xaml;RegistrationWindow.xaml;
+211518239657
+215-584415880
+Buildings\AddBuilding.xaml;Buildings\Buildings.xaml;Buildings\EditBuilding.xaml;Categories\AddCategory.xaml;Categories\Categories.xaml;Categories\EditCategory.xaml;Dashboard\AddItem.xaml;Dashboard\EditItem.xaml;Dashboard\FilterWindow.xaml;Dashboard\ImagePreviewDialog.xaml;Dashboard\MainWindow.xaml;LoginWindow.xaml;RegistrationWindow.xaml;Reports\Reports.xaml;Rooms\AddRoom.xaml;Rooms\EditRoom.xaml;Rooms\Rooms.xaml;
 
 False
 

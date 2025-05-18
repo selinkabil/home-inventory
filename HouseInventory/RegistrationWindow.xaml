@@ -10,7 +10,7 @@
                 <!-- Username -->
                 <StackPanel Margin="0,0,0,15">
                     <TextBlock Text="Username" Foreground="#333333" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                    <TextBox Height="36" Background="#FFFFFF" BorderBrush="#E9E9E7" BorderThickness="1" Padding="10,0" FontSize="15"/>
+                    <TextBox x:Name="UsernameTextBox" Height="36" Background="#FFFFFF" BorderBrush="#E9E9E7" BorderThickness="1" Padding="10,0" FontSize="15"/>
                 </StackPanel>
 
                 <!-- Email -->
@@ -22,13 +22,13 @@
                 <!-- Password -->
                 <StackPanel Margin="0,0,0,15">
                     <TextBlock Text="Password" Foreground="#333333" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                    <PasswordBox Height="36" Background="#FFFFFF" BorderBrush="#E9E9E7" BorderThickness="1" FontSize="15"/>
+                    <PasswordBox x:Name="PasswordBox" Height="36" Background="#FFFFFF" BorderBrush="#E9E9E7" BorderThickness="1" FontSize="15"/>
                 </StackPanel>
 
                 <!-- Confirm Password -->
                 <StackPanel Margin="0,0,0,25">
                     <TextBlock Text="Confirm Password" Foreground="#333333" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                    <PasswordBox Height="36" Background="#FFFFFF" BorderBrush="#E9E9E7" BorderThickness="1" FontSize="15"/>
+                    <PasswordBox x:Name="ConfirmPasswordBox" Height="36" Background="#FFFFFF" BorderBrush="#E9E9E7" BorderThickness="1" FontSize="15"/>
                 </StackPanel>
 
                 <!-- Register Button -->
@@ -39,7 +39,8 @@
                         FontWeight="Bold"
                         FontSize="16"
                         BorderBrush="Transparent"
-                        Margin="0,0,0,10">
+                        Margin="0,0,0,10"
+                        Click="RegisterButton_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Border Background="{TemplateBinding Background}" CornerRadius="12">

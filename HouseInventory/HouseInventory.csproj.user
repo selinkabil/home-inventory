@@ -7,7 +7,28 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="AddItem.xaml.cs">
+    <Compile Update="Buildings\AddBuilding.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Buildings\Buildings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Buildings\EditBuilding.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Categories\Categories.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Dashboard\AddItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Dashboard\EditItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Dashboard\FilterWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Dashboard\ImagePreviewDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="LoginWindow.xaml.cs">
@@ -16,9 +37,21 @@
     <Compile Update="RegistrationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Reports\Reports.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Rooms\AddRoom.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Rooms\EditRoom.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Rooms\Rooms.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="MainWindow.xaml">
+    <Page Update="Dashboard\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

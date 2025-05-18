@@ -1,0 +1,187 @@
+﻿<Window x:Class="HouseInventory.Buildings.Buildings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Buildings" WindowState="Maximized" Background="#FAFAF9">
+
+    <Grid>  
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="287"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar copied as-is -->
+        <!-- Replace active button highlight for Buildings -->
+
+        <StackPanel Background="#E9E9E7" HorizontalAlignment="Center" Width="285">
+            <Image Height="110" Margin="0,20,0,30" Width="216" Source="/Dashboard/Untitled_design__3_-removebg-preview.png"/>
+
+            <Button Content="Dashboard" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Cursor="Hand" Click="DashboardButton_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#8CA07B"/>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="Categories" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Cursor="Hand" Click="CategoriesButton_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#8CA07B"/>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <!-- New Buttons for Buildings and Rooms -->
+            <Button Content="Buildings" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Cursor="Hand" Click="BuildingsButton_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#6B7E54"/>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="Rooms" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Cursor="Hand" Click="RoomsButton_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#8CA07B"/>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="Reports" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Cursor="Hand" Click="ReportsButton_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="#8CA07B"/>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="Exit" Cursor="Hand" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Click="Button_Click_1">
+                <Button.Background>
+                    <SolidColorBrush Color="#8CA07B"/>
+                </Button.Background>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Column="1" Margin="10,50,20,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Margin="10,10,23,10" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Cursor="Hand" BorderBrush="Transparent" Content="Add" Click="AddBuildingButton_Click"
+                        Foreground="#FFFAFAF9" Margin="10,0,0,0" Height="33" Width="100">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="15" Background="#8CA07B">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Grid.Column="1" Cursor="Hand" BorderBrush="Transparent" Content="Edit" Click="EditBuildingButton_Click"
+                        Foreground="#FFFAFAF9" Margin="10,0,0,0" Height="33" Width="100">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="15" Background="#8CA07B">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Grid.Column="2" Cursor="Hand" BorderBrush="Transparent" Content="Delete" Click="DeleteBuildingButton_Click"
+                        Foreground="#FFFAFAF9" Margin="10,0,0,0" Height="33" Width="100">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="15" Background="#FFD99163">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <StackPanel Grid.Column="10" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <Label x:Name="UsernameLabel" FontWeight="Bold" VerticalAlignment="Center" Foreground="#333333" FontSize="18" Margin="0,0,10,0"/>
+                    <Image Source="/Dashboard/user.png" VerticalAlignment="Center" Height="39" Width="39"/>
+                </StackPanel>
+            </Grid>
+
+            <ListView Grid.Row="2" x:Name="BuildingsListView" Margin="10" BorderBrush="#8CA07B" BorderThickness="2"
+                      Background="#FFEEEED5" FontSize="18">
+                <ListView.Resources>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="BorderBrush" Value="#E9E9E7"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="#F5F5F4"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#8CA07B"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Building" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding BuildingName}" TextAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>

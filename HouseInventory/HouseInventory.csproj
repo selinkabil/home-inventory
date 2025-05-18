@@ -9,22 +9,35 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="HOMEMATE-removebg-preview.png" />
-    <None Remove="png_7qsoij.png" />
+    <None Remove="Dashboard\arrow-down.png" />
+    <None Remove="Dashboard\search-interface-symbol %282%29.png" />
+    <None Remove="Dashboard\up-arrow.png" />
     <None Remove="Untitled_design__3_-removebg-preview.png" />
-    <None Remove="_Simplify..png" />
+    <None Remove="user.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.105.0" />
+    <PackageReference Include="DotNetEnv" Version="3.1.1" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="HOMEMATE-removebg-preview.png" />
-    <Resource Include="png_7qsoij.png" />
-    <Resource Include="Untitled_design__3_-removebg-preview.png" />
-    <Resource Include="_Simplify..png" />
+    <Resource Include="Dashboard\arrow-down.png" />
+    <Resource Include="Dashboard\search-interface-symbol (2).png" />
+    <Resource Include="Dashboard\Untitled_design__3_-removebg-preview.png" />
+    <Resource Include="Dashboard\up-arrow.png" />
+    <Resource Include="Dashboard\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Categories\AddCategory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Categories\EditCategory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

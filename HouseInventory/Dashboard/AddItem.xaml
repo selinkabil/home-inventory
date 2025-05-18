@@ -1,0 +1,110 @@
+﻿<Window x:Class="HouseInventory.Dashboard.AddItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Item" Height="772" Width="450"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFFDFDFD">
+
+    <Border Background="#E9E9E7" CornerRadius="20" Padding="36" Margin="20"> <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="618">
+       
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Image + buttons -->
+                <RowDefinition Height="Auto"/>
+                <!-- Item Name Label -->
+                <RowDefinition Height="Auto"/>
+                <!-- Item Name Input -->
+                <RowDefinition Height="Auto"/>
+                <!-- Description Label -->
+                <RowDefinition Height="Auto"/>
+                <!-- Description Input -->
+                <RowDefinition Height="Auto"/>
+                <!-- Category Label -->
+                <RowDefinition Height="Auto"/>
+                <!-- Category ComboBox -->
+                <RowDefinition Height="Auto"/>
+                <!-- Purchase Date Label -->
+                <RowDefinition Height="Auto"/>
+                <!-- Purchase Date DatePicker -->
+                <RowDefinition Height="Auto"/>
+                <!-- Building/Room StackPanel -->
+                <RowDefinition Height="Auto"/>
+                <!-- Quantity/Value StackPanel -->
+                <RowDefinition Height="Auto"/>
+                <!-- Buttons Save/Cancel -->
+            </Grid.RowDefinitions>
+
+            <!-- Item Image -->
+            <Image x:Name="ItemImage" Height="150" Width="200" Margin="0,0,0,10" Grid.Row="0" HorizontalAlignment="Left"/>
+            <StackPanel Margin="0,10,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0">
+                <Button x:Name="SelectImageButton"
+                    Content="Select an image"
+                    Width="140" Height="35"
+                    Background="#8CA07B"
+                    Foreground="White"
+                    FontWeight="SemiBold"
+                    Click="SelectImageButton_Click"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Margin="0,0,0,5"/>
+                <Button x:Name="UploadRandomImageButton"
+                    Content="Upload a random image"
+                    Width="160" Height="35"
+                    Background="#D99163"
+                    Foreground="White"
+                    FontWeight="SemiBold"
+                    Click="UploadRandomImageButton_Click"
+                    BorderThickness="0"
+                    Cursor="Hand"/>
+            </StackPanel>
+
+            <!-- Item Name -->
+            <Label Content="Item Name:" Grid.Row="1" />
+            <TextBox x:Name="ItemNameTextBox" Grid.Row="2" Height="30" Margin="0,0,0,10"/>
+
+            <!-- Description -->
+            <Label Content="Description:" Grid.Row="3"/>
+            <TextBox x:Name="DescriptionTextBox" Grid.Row="4" Height="30" Margin="0,0,0,10"/>
+
+            <!-- Category -->
+            <Label Content="Category:" Grid.Row="5"/>
+            <ComboBox x:Name="CategoryComboBox" Grid.Row="6" Height="30" Margin="0,0,0,10"/>
+
+            <!-- Purchase Date -->
+            <Label Content="Purchase Date:" Grid.Row="7"/>
+            <DatePicker x:Name="PurchaseDatePicker" Grid.Row="8" Height="30" Margin="0,0,0,10"/>
+
+            <!-- Building and Room -->
+            <StackPanel Orientation="Horizontal" Grid.Row="9" Margin="0,0,0,10">
+                <StackPanel Width="200">
+                    <Label Content="Building:"/>
+                    <ComboBox x:Name="BuildingComboBox" Height="30" Margin="0,0,0,5" SelectionChanged="BuildingComboBox_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Width="200" Margin="10,0,0,0">
+                    <Label Content="Room:"/>
+                    <ComboBox x:Name="RoomComboBox" Height="30" Margin="0,0,0,5"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Quantity and Value -->
+            <StackPanel Orientation="Horizontal" Grid.Row="10" Margin="0,0,0,20">
+                <StackPanel Width="200">
+                    <Label Content="Quantity:"/>
+                    <TextBox x:Name="QuantityTextBox" Height="30" Margin="0,0,0,5"/>
+                </StackPanel>
+                <StackPanel Width="200" Margin="10,0,0,0">
+                    <Label Content="Value:"/>
+                    <TextBox x:Name="ValueTextBox" Height="30" Margin="0,0,0,5"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Buttons -->
+            <StackPanel Grid.Row="11" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="SaveButton" Content="Save" Width="100" Height="35" Margin="0,0,10,0"
+             Background="#8CA07B" Foreground="White" Click="SaveButton_Click"/>
+                <Button x:Name="CancelButton" Content="Cancel" Width="100" Height="35"
+             Background="#D99163" Foreground="White" Click="CancelButton_Click"/>
+            </StackPanel>
+       
+    </Grid> </Border>
+</Window>
