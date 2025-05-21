@@ -16,9 +16,11 @@ namespace HouseInventory.Buildings
 {
     public partial class AddBuilding : Window
     {
-        public AddBuilding()
+        private readonly int _userID;
+        public AddBuilding(int userid)
         {
             InitializeComponent();
+            _userID = userid;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -30,7 +32,7 @@ namespace HouseInventory.Buildings
                 return;
             }
 
-            DatabaseService.Instance.AddBuilding(buildingName);
+            DatabaseService.Instance.AddBuilding(buildingName,_userID);
             Close();
         }
 

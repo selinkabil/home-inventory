@@ -15,7 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DotNetEnv;
 using Microsoft.Win32;
-using static HouseInventory.DatabaseService;
+using HouseInventory.Models;
+
 namespace HouseInventory.Dashboard
 {
     public partial class EditItem : Window
@@ -28,26 +29,51 @@ namespace HouseInventory.Dashboard
         {
             InitializeComponent();
 
-            CategoryComboBox.ItemsSource = DatabaseService.Instance.GetCategories(UserID);
+            _item = itemToEdit;
+            UserID = itemToEdit.UserID;
+
+            // Populate categories for this user
+            var categories = DatabaseService.Instance.GetCategories(UserID);
+            CategoryComboBox.ItemsSource = categories;
             CategoryComboBox.DisplayMemberPath = "CategoryName";
             CategoryComboBox.SelectedValuePath = "CategoryID";
 
-            BuildingComboBox.ItemsSource = DatabaseService.Instance.GetBuildings();
-            BuildingComboBox.DisplayMemberPath = "BuildingName"; 
+            // Set selected category by matching CategoryName
+            if (!string.IsNullOrEmpty(_item.Category))
+            {
+                var selectedCategory = categories.FirstOrDefault(c => c.CategoryName == _item.Category);
+                CategoryComboBox.SelectedItem = selectedCategory;
+            }
+
+            // Populate buildings for this user
+            var buildings = DatabaseService.Instance.GetBuildings(UserID);
+            BuildingComboBox.ItemsSource = buildings;
+            BuildingComboBox.DisplayMemberPath = "BuildingName";
             BuildingComboBox.SelectedValuePath = "BuildingID";
 
-            _item = itemToEdit;
-            UserID = itemToEdit.UserID;
+            // Set selected building by matching BuildingName
+            if (!string.IsNullOrEmpty(_item.BuildingName))
+            {
+                var selectedBuilding = buildings.FirstOrDefault(b => b.BuildingName == _item.BuildingName);
+                BuildingComboBox.SelectedItem = selectedBuilding;
+            }
+
+            // Populate rooms for the selected building
+            if (BuildingComboBox.SelectedItem is Building building)
+            {
+                var rooms = DatabaseService.Instance.GetRoomsForBuilding(building.BuildingID);
+                RoomComboBox.ItemsSource = rooms;
+                RoomComboBox.DisplayMemberPath = "RoomName";
+                RoomComboBox.SelectedValuePath = "RoomID";
+
+                // Set selected room by matching RoomID
+                var selectedRoom = rooms.FirstOrDefault(r => r.RoomID == _item.RoomID);
+                RoomComboBox.SelectedItem = selectedRoom;
+            }
+
             ItemNameTextBox.Text = _item.ItemName;
             DescriptionTextBox.Text = _item.Description;
 
-            if (!string.IsNullOrEmpty(_item.Category))
-                CategoryComboBox.SelectedItem = _item.Category;
-
-            if (!string.IsNullOrEmpty(_item.BuildingName))
-                BuildingComboBox.SelectedItem = _item.BuildingName;
-
-            // Set PurchaseDatePicker selected date, assuming _item.PurchaseDate is string (parse to DateTime)
             if (DateTime.TryParse(_item.PurchaseDate, out DateTime purchaseDate))
                 PurchaseDatePicker.SelectedDate = purchaseDate;
             else
@@ -65,11 +91,6 @@ namespace HouseInventory.Dashboard
             {
                 ItemImage.Source = null;
             }
-
-            // Set RoomComboBox selected item based on _item.RoomID
-            var roomName = DatabaseService.Instance.GetRoomNameById(_item.RoomID);
-            if (!string.IsNullOrEmpty(roomName))
-                RoomComboBox.SelectedItem = roomName;
 
             Env.Load();
             accessKey = Env.GetString("UNSPLASH_ACCESS_KEY");
@@ -169,8 +190,9 @@ namespace HouseInventory.Dashboard
                         // fallback image if file not found or invalid
                         ItemImage.Source = new BitmapImage(new Uri("pack://application:,,,/Images/no-image.png"));
                     }
+                    // Save the Unsplash URL as the image path
+                    _imagePath = imageUrl;
                 }
-                ItemImage.Source = new BitmapImage(new Uri(imageUrl));
                 MessageBox.Show("Random image applied.");
             }
         }

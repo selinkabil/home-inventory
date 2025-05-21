@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static HouseInventory.DatabaseService;
+using HouseInventory.Models;
 
 namespace HouseInventory.Buildings
 {
@@ -50,6 +51,7 @@ namespace HouseInventory.Buildings
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             dashboard.Show();
+            LoadSidebarBuildings();
         }
 
         private void OpenCategories()
@@ -123,21 +125,22 @@ namespace HouseInventory.Buildings
         public Buildings(string username, int userID)
         {
             InitializeComponent();
+            _userID = userID;
             LoadSidebarBuildings();
             UsernameLabel.Content = username;
             Username = username;
-            _userID = userID;
+            
         }
 
         private void LoadSidebarBuildings()
         {
-            var buildings = DatabaseService.Instance.GetBuildings();
+            var buildings = DatabaseService.Instance.GetBuildings(_userID);
             BuildingsListView.ItemsSource = buildings;
         }
 
         private void AddBuildingButton_Click(object sender, RoutedEventArgs e)
         {
-            var addBuildingWindow = new AddBuilding();
+            var addBuildingWindow = new AddBuilding(_userID);
             addBuildingWindow.ShowDialog();
             LoadSidebarBuildings();
         }
@@ -160,7 +163,7 @@ namespace HouseInventory.Buildings
         {
             if (BuildingsListView.SelectedItem is Building selectedBuilding)
             {
-                DatabaseService.Instance.DeleteBuilding(selectedBuilding.BuildingID);
+                DatabaseService.Instance.DeleteBuilding(selectedBuilding.BuildingID, _userID);
                 LoadSidebarBuildings();
             }
             else

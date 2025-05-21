@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static HouseInventory.DatabaseService;
+using HouseInventory.Models;
 
 namespace HouseInventory.Buildings
 {
@@ -35,7 +36,7 @@ namespace HouseInventory.Buildings
                 return;
             }
 
-            DatabaseService.Instance.UpdateBuilding(_building.BuildingID, newName);
+            DatabaseService.Instance.UpdateBuilding(_building.BuildingID, newName,_building.UserID);
             Close();
         }
 

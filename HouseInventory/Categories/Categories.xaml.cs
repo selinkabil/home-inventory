@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using static HouseInventory.DatabaseService;
+using HouseInventory.Models;
 
 namespace HouseInventory.Categories.Categories
 {

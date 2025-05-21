@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static HouseInventory.DatabaseService;
+using HouseInventory.Models;
 namespace HouseInventory.Rooms
 {
     public partial class EditRoom : Window
@@ -23,6 +24,8 @@ namespace HouseInventory.Rooms
         public EditRoom(Room room)
         {
             InitializeComponent();
+            var building = DatabaseService.Instance.GetBuildingById(room.BuildingID);
+            _userID = building?.UserID ?? 0;
             _roomID = room.RoomID;
             LoadBuildings();
             RoomNameTextBox.Text = room.RoomName;
@@ -31,7 +34,7 @@ namespace HouseInventory.Rooms
 
         private void LoadBuildings()
         {
-            var buildings = DatabaseService.Instance.GetBuildings();
+            var buildings = DatabaseService.Instance.GetBuildings(_userID);
             BuildingComboBox.ItemsSource = buildings;
          
         }

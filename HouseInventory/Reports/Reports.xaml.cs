@@ -29,6 +29,15 @@ namespace HouseInventory.Reports
             LoadTotalValue();
         }
 
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+            LoadInventorySummary();
+            LoadCategoryBreakdown();
+            LoadRoomUsage();
+            LoadTotalValue();
+        }
+
         private void InventorySummary_Click(object sender, RoutedEventArgs e)
         {
             LoadInventorySummary();

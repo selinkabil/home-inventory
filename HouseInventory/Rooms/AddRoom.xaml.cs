@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HouseInventory.Services;
 using static HouseInventory.DatabaseService;
 
 namespace HouseInventory.Rooms
@@ -18,19 +19,19 @@ namespace HouseInventory.Rooms
     public partial class AddRoom : Window
     {
         private readonly int _userID;
-
+        private readonly RoomManager _roomManager;
         public AddRoom(int userID)
         {
             InitializeComponent();
             _userID = userID;
-
+            _roomManager = new RoomManager(DatabaseService.Instance);
             LoadBuildings();
         }
 
         private void LoadBuildings()
         {
             // Get the list of buildings from the database
-            var buildings = DatabaseService.Instance.GetBuildings();
+            var buildings = DatabaseService.Instance.GetBuildings(_userID);
             BuildingComboBox.ItemsSource = buildings;
         }
 
@@ -44,7 +45,7 @@ namespace HouseInventory.Rooms
             }
 
             int buildingId = (int)BuildingComboBox.SelectedValue;
-            DatabaseService.Instance.AddRoom(roomName, buildingId);
+            _roomManager.AddRoom(roomName, buildingId);
             DialogResult = true;
             Close();
         }

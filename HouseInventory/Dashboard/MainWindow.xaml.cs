@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using DotNetEnv;
 using HouseInventory.Dashboard;
 using static HouseInventory.DatabaseService;
+using HouseInventory.Models;
 namespace HouseInventory.Dashboard
 {
     public partial class MainWindow : Window

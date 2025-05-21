@@ -9,6 +9,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using DotNetEnv;
+using HouseInventory.Models;
+using HouseInventory.Services;
 using static HouseInventory.DatabaseService;
 
 namespace HouseInventory.Dashboard
@@ -18,12 +20,12 @@ namespace HouseInventory.Dashboard
         private readonly string accessKey;
         private readonly int _userID;
         private string selectedImageUrl = null;
-
+        private readonly ItemManager _itemManager;
         public AddItem(int userID)
         {
             InitializeComponent();
             _userID = userID;
-          
+            _itemManager = new ItemManager(DatabaseService.Instance);
             Env.Load();
             accessKey = Env.GetString("UNSPLASH_ACCESS_KEY");
 
@@ -32,7 +34,7 @@ namespace HouseInventory.Dashboard
                 MessageBox.Show("Missing API key.");
             }
 
-            var buildings = DatabaseService.Instance.GetBuildings();
+            var buildings = DatabaseService.Instance.GetBuildings(_userID);
             BuildingComboBox.ItemsSource = buildings;
             BuildingComboBox.DisplayMemberPath = "BuildingName";
             BuildingComboBox.SelectedValuePath = "BuildingID";
@@ -225,7 +227,7 @@ namespace HouseInventory.Dashboard
 
             try
             {
-                DatabaseService.Instance.AddItem(newItem);
+                _itemManager.AddItem(newItem);
                 MessageBox.Show("Item added successfully!");
                 this.Close();
             }

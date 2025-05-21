@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using static HouseInventory.DatabaseService;
+using HouseInventory.Models;
 
 namespace HouseInventory.Rooms
 {
@@ -25,13 +26,15 @@ namespace HouseInventory.Rooms
         public Rooms(string username, int userID)
         {
             InitializeComponent();
+            _userID = userID;
             LoadRooms();
+            
             UsernameLabel.Content = username;
         }
 
         private void LoadRooms()
         {
-            var rooms = DatabaseService.Instance.GetRooms();
+            var rooms = DatabaseService.Instance.GetRoomsForUser(_userID);
             RoomsListView.ItemsSource = rooms;
         }
 

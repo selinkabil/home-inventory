@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Text;
 using System.Windows;
+using HouseInventory.Models;
 
 namespace HouseInventory
 {
-    public sealed class DatabaseService
+    public sealed class DatabaseService : IDatabaseService
     {
         private static readonly DatabaseService _instance = new DatabaseService();
         private readonly SQLiteConnection _connection;
@@ -358,6 +359,29 @@ namespace HouseInventory
             return result != null ? result.ToString() : string.Empty;
         }
 
+        public List<Room> GetRoomsForUser(int userId)
+        {
+            var rooms = new List<Room>();
+            const string query = @"
+                SELECT r.RoomID, r.RoomName, r.BuildingID, b.BuildingName
+                FROM Rooms r
+                INNER JOIN Buildings b ON r.BuildingID = b.BuildingID
+                WHERE b.UserID = @UserID";
+            using var cmd = new SQLiteCommand(query, _connection);
+            cmd.Parameters.AddWithValue("@UserID", userId);
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                rooms.Add(new Room
+                {
+                    RoomID = reader.GetInt32(0),
+                    RoomName = reader.GetString(1),
+                    BuildingID = reader.GetInt32(2),
+                    BuildingName = reader.IsDBNull(3) ? null : reader.GetString(3)
+                });
+            }
+            return rooms;
+        }
 
 
         //CATEGORIES
@@ -424,53 +448,98 @@ namespace HouseInventory
             return result != null ? Convert.ToInt32(result) : 0;
         }
 
+        public int GetCategoryIdByName(string categoryName, int userId)
+        {
+            const string sql = "SELECT CategoryID FROM Categories WHERE CategoryName = @CategoryName AND UserID = @UserID";
+            using var cmd = new SQLiteCommand(sql, _connection);
+            cmd.Parameters.AddWithValue("@CategoryName", categoryName);
+            cmd.Parameters.AddWithValue("@UserID", userId);
+
+            var result = cmd.ExecuteScalar();
+            return result != null ? Convert.ToInt32(result) : 0;
+        }
+
         //BUILDINGS
 
-        public List<Building> GetBuildings()
+        // Get all buildings for a specific user
+        public List<Building> GetBuildings(int userId)
         {
             var buildings = new List<Building>();
-            const string query = "SELECT BuildingID, BuildingName FROM Buildings";
-
-            using var cmd = new SQLiteCommand(query, _connection);
-            using var reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            try
             {
-                buildings.Add(new Building
+                const string query = "SELECT BuildingID, BuildingName, UserID FROM Buildings WHERE UserID = @UserID";
+                using var cmd = new SQLiteCommand(query, _connection);
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    BuildingID = reader.GetInt32(0),
-                    BuildingName = reader.GetString(1)
-                });
+                    buildings.Add(new Building
+                    {
+                        BuildingID = reader.GetInt32(0),
+                        BuildingName = reader.GetString(1),
+                        UserID = reader.GetInt32(2)
+                    });
+                }
             }
-
+            catch (Exception ex)
+            {
+                // Log or handle the exception as needed
+                MessageBox.Show($"Error loading buildings: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             return buildings;
         }
 
-        public void AddBuilding(string buildingName)
+        // Add a new building for the current user
+        public void AddBuilding(string buildingName, int userId)
         {
-            const string sql = "INSERT INTO Buildings (BuildingName) VALUES (@BuildingName)";
-            using var cmd = new SQLiteCommand(sql, _connection);
-            cmd.Parameters.AddWithValue("@BuildingName", buildingName);
-            cmd.ExecuteNonQuery();
+            try
+            {
+                const string sql = "INSERT INTO Buildings (BuildingName, UserID) VALUES (@BuildingName, @UserID)";
+                using var cmd = new SQLiteCommand(sql, _connection);
+                cmd.Parameters.AddWithValue("@BuildingName", buildingName);
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error adding building: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        public void UpdateBuilding(int buildingId, string newBuildingName)
+        // Update a building for the current user
+        public void UpdateBuilding(int buildingId, string newBuildingName, int userId)
         {
-            const string sql = "UPDATE Buildings SET BuildingName = @BuildingName WHERE BuildingID = @BuildingID";
-            using var cmd = new SQLiteCommand(sql, _connection);
-            cmd.Parameters.AddWithValue("@BuildingName", newBuildingName);
-            cmd.Parameters.AddWithValue("@BuildingID", buildingId);
-            cmd.ExecuteNonQuery();
+            try
+            {
+                const string sql = "UPDATE Buildings SET BuildingName = @BuildingName WHERE BuildingID = @BuildingID AND UserID = @UserID";
+                using var cmd = new SQLiteCommand(sql, _connection);
+                cmd.Parameters.AddWithValue("@BuildingName", newBuildingName);
+                cmd.Parameters.AddWithValue("@BuildingID", buildingId);
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating building: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        public void DeleteBuilding(int buildingId)
+        // Delete a building for the current user
+        public void DeleteBuilding(int buildingId, int userId)
         {
-            const string sql = "DELETE FROM Buildings WHERE BuildingID = @BuildingID";
-            using var cmd = new SQLiteCommand(sql, _connection);
-            cmd.Parameters.AddWithValue("@BuildingID", buildingId);
-            cmd.ExecuteNonQuery();
+            try
+            {
+                const string sql = "DELETE FROM Buildings WHERE BuildingID = @BuildingID AND UserID = @UserID";
+                using var cmd = new SQLiteCommand(sql, _connection);
+                cmd.Parameters.AddWithValue("@BuildingID", buildingId);
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting building: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
-
 
         public List<Room> GetRoomsForBuilding(int buildingId)
         {
@@ -515,6 +584,24 @@ namespace HouseInventory
                 };
             }
             return null; // or throw exception if preferred
+        }
+
+        public Building GetBuildingById(int buildingId)
+        {
+            const string query = "SELECT BuildingID, BuildingName, UserID FROM Buildings WHERE BuildingID = @BuildingID";
+            using var cmd = new SQLiteCommand(query, _connection);
+            cmd.Parameters.AddWithValue("@BuildingID", buildingId);
+            using var reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                return new Building
+                {
+                    BuildingID = reader.GetInt32(0),
+                    BuildingName = reader.GetString(1),
+                    UserID = reader.GetInt32(2)
+                };
+            }
+            return null;
         }
 
         // 1. Inventory Summary: Returns all items with room and building info
@@ -660,58 +747,6 @@ namespace HouseInventory
             return items;
         }
 
-        public class Building
-        {
-            public int BuildingID { get; set; }
-            public string BuildingName { get; set; }
-        }
-
-        public class Category
-        {
-            public int CategoryID { get; set; }
-            public string CategoryName { get; set; }
-            public int UserID { get; set; }
-        }
-
-
-        public class Role
-        {
-            public int RoleID { get; set; }
-            public string RoleName { get; set; }
-        }
-
-        public class Room
-        {
-            public int RoomID { get; set; }
-            public string RoomName { get; set; }
-            public int BuildingID { get; set; }
-            public string BuildingName { get; set; }
-        }
-
-        public class User
-        {
-            public int UserID { get; set; }
-            public string Username { get; set; }
-            public string Password { get; set; }
-            public int RoleID { get; set; }
-        }
-
-        public class Item
-        {
-            public int ItemID { get; set; }
-            public string ItemName { get; set; }
-            public string Description { get; set; }
-            public string Category { get; set; }
-            public string PurchaseDate { get; set; }
-            public int RoomID { get; set; }
-            public double Value { get; set; }
-            public int Quantity { get; set; }
-            public string ImagePath { get; set; }
-            public string RoomName { get; set; }
-            public string BuildingName { get; set; }
-
-            public int UserID { get; set; }
-
-        }
+     
     }
 }

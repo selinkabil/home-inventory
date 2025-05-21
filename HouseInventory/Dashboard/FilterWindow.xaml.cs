@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using HouseInventory;
 namespace HouseInventory.Dashboard;
 using static HouseInventory.DatabaseService;
+using HouseInventory.Models;
 
 public partial class FilterWindow : Window
 {
