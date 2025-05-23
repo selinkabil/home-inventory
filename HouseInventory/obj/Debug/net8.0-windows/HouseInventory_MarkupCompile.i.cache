@@ -16,5 +16,5 @@ C:\Users\Lenovo RYZEN 7\source\repos\HouseInventory\repo\HouseInventory\App.xaml
 215-584415880
 Buildings\AddBuilding.xaml;Buildings\Buildings.xaml;Buildings\EditBuilding.xaml;Categories\AddCategory.xaml;Categories\Categories.xaml;Categories\EditCategory.xaml;Dashboard\AddItem.xaml;Dashboard\EditItem.xaml;Dashboard\FilterWindow.xaml;Dashboard\ImagePreviewDialog.xaml;Dashboard\MainWindow.xaml;LoginWindow.xaml;RegistrationWindow.xaml;Reports\Reports.xaml;Rooms\AddRoom.xaml;Rooms\EditRoom.xaml;Rooms\Rooms.xaml;
 
-False
+True
 

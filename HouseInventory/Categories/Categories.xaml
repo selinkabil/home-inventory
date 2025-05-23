@@ -16,7 +16,6 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <!-- Sidebar Menu - reuse the same sidebar -->
         <StackPanel Background="#E9E9E7" HorizontalAlignment="Center" Width="285">
             <Image Height="110" Margin="0,20,0,30" Width="216" Source="/Dashboard/Untitled_design__3_-removebg-preview.png"/>
 
@@ -36,7 +35,6 @@
             <Button Content="Categories" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Cursor="Hand" Click="CategoriesButton_Click">
                 <Button.Background>
                     <SolidColorBrush Color="#6B7E54"/>
-                    <!-- Highlight categories button with slightly different green -->
                 </Button.Background>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -47,7 +45,6 @@
                 </Button.Template>
             </Button>
 
-            <!-- Other sidebar buttons -->
             <Button Content="Buildings" Height="38" Width="226" Margin="25,0,25,10" BorderBrush="Transparent" FontSize="16" Foreground="#FFFAFAF9" Cursor="Hand" Click="BuildingsButton_Click">
                 <Button.Background>
                     <SolidColorBrush Color="#8CA07B"/>
@@ -101,7 +98,6 @@
             </Button>
         </StackPanel>
 
-        <!-- Main content area -->
         <Grid Grid.Column="1" Margin="10,50,20,20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -121,7 +117,6 @@
 
                 
 
-                <!-- Manipulation Buttons: only Add, Edit, Delete -->
                 <Button Grid.Column="0" Cursor="Hand" BorderBrush="Transparent" Content="Add" Click="AddCategoryButton_Click" Foreground="#FFFAFAF9" Margin="10,0,0,0" Height="33" Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -160,7 +155,6 @@
 
             <ListView Grid.Row="2" x:Name="CategoriesListView" Margin="10" BorderBrush="#8CA07B" BorderThickness="2" Background="#FFEEEED5" FontSize="18" >
                 <ListView.Resources>
-                    <!-- Style for alternating row background -->
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         <Setter Property="VerticalContentAlignment" Value="Center"/>

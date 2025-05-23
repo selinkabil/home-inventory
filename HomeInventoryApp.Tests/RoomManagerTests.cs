@@ -7,7 +7,7 @@ using HouseInventory.Services;
 
 namespace HomeInventoryApp.Tests
 {
-    [TestFixture]
+     [TestFixture]
     public class RoomManagerTests
     {
         [Test]

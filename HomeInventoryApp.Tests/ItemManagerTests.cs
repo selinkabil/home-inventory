@@ -22,3 +22,4 @@ using HouseInventory.Models;
             Assert.IsTrue(fakeDb.AddItemCalled);
         }
     }
+

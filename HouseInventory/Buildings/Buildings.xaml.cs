@@ -15,10 +15,7 @@ using static HouseInventory.DatabaseService;
 using HouseInventory.Models;
 
 namespace HouseInventory.Buildings
-{
-    /// <summary>
-    /// Interaction logic for Buildings.xaml
-    /// </summary>
+{ 
     public partial class Buildings : Window
     {
         private readonly int _userID;

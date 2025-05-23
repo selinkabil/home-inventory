@@ -408,6 +408,7 @@ namespace HouseInventory.Dashboard
             {
                 MessageBox.Show("Please select an item to delete.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+            ItemsView.Refresh();
         }
 
       
@@ -428,6 +429,7 @@ namespace HouseInventory.Dashboard
             {
                 MessageBox.Show("Please select an item to edit.", "No Item Selected", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            ItemsView.Refresh();
         }
 
         private void FilterButton_Click(object sender, RoutedEventArgs e)

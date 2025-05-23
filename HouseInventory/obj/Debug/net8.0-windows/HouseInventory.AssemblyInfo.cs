@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HouseInventory")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbe7fb51a67b6323f870664bd811f374fa926fe7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db23ed0a0173ee57fde32061befc280b9e93266d")]
 [assembly: System.Reflection.AssemblyProductAttribute("HouseInventory")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HouseInventory")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
